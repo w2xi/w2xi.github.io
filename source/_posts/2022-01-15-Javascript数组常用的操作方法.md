@@ -2,7 +2,7 @@
 title: Javascript数组常用的操作方法
 date: 2022-01-15 13:29:45
 tags:
-  - Javascript
+  - JavaScript
 categories: 
   - FrontEnd
 ---
