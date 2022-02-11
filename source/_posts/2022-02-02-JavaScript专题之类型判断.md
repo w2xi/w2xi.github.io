@@ -2,24 +2,27 @@
 title: JavaScript专题之类型判断
 date: 2022-02-02 15:24:40
 tags:
-  - JavaScript专题
+  - JavaScript专题系列
 categories:
   - FrontEnd
 ---
 
 ## 前言
 
-类型判断，在我们平时的工作中经常会使用到。比如，判断给定值是否是数字，字符串，布尔值，数组等类型。
+类型判断，在我们平时的工作中会经常使用到。比如，判断给定值是否是数字，字符串，布尔值和数组等类型。
 
 ## typeof
 
-typeof 应该是我们最常用地用于判断数据类型的一种方式了。比如:
+typeof 应该是我们最常用地用于判断数据类型的一种方式了。
+
+Example:
 
 ```javascript
-typeof 1 // 'number'
+typeof 1    // 'number'
+typeof true // 'boolean'
 ```
 
-引用 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof) 对typeof的介绍:
+typeof 介绍:  
 > typeof 操作符返回一个字符串，表示未经计算的操作数的类型。
 
 最新的 ECMAScript 标准定义了8种[数据类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_Types#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%B1%BB%E5%9E%8B):
@@ -32,7 +35,7 @@ typeof 1 // 'number'
   + undefined
   + Symbol
   + BigInt
-+ 以及对象 Object
++ 引用类型
 
 对这8种数据类型分别使用 typeof:
 ```javascript
@@ -43,25 +46,28 @@ typeof null         // 'object'
 typeof undefined    // 'undefined'
 typeof Symbol('s')  // 'symbol'
 typeof BigInt(2)    // 'bigint'
-typeof {}           // 'object'
+typeof [1]          // 'object'
 ```
-可以看到，得到的结果与它们的类型并非完全一一对应。null 和 {} 都返回了 object 字符串。
+可以看到，得到的结果与它们的类型并非完全一一对应。
 
-在 javascript 中，可以说一切皆对象。数组是对象，函数是对象，但是 typeof 却可以检测出函数类型:
+null 返回了 'object'，而非我们期望的 'null'；[1] 返回了 ‘object’，而非 ‘array’。
+
+在 javascript 中，可以说一切皆对象。数组是对象，函数是对象，对象是对象，哈哈，但是 typeof 却可以检测出函数的类型:
 ```javascript
 typeof function(){} // 'function'
 ```
 
 现在我们知道了，typeof 可以检测出: Number, String, Boolean, undefined, Symbol, BigInt, Function 类型。
-但是，对于 Array, Object, Error, Math 等对象似乎无能为力。
+但是，对于 Array, Object, Arguments 等对象似乎无能为力。
 ```javascript
-typeof []         // 'object'
-typeof {}         // 'object'
-typeof new Error  // 'object'
-typeof Math       // 'object'
+typeof []                             // 'object'
+typeof {}                             // 'object'
+typeof function(){return arguments}   // 'object'
 ```
 
-难道我们真的没有办法了吗？
+难道我们真的没有办法检测出它们的真实类型吗？
+
+我想我们还是有办法的。
 
 ## Object.prototype.toString
 
@@ -102,11 +108,11 @@ protoToString.call(new Proxy({},()=>{}))// '[object Object]'
 
 ## type API
 
-既然通过 Object.prototype.toString 可以检测出几乎所有的类型，那么我们可以对其进行封装。
+既然通过 Object.prototype.toString 可以检测出几乎所有的类型，那么我们可以将其封装成一个函数: 将要检测的值传递到该函数，经过判断返回值的数据类型。
 
 我的设想：
 
-写一个 type 函数能检测各种类型的值，如果是基本类型，就使用 typeof，引用类型就使用 toString。此外鉴于 typeof 的结果是小写，我也希望所有的结果都是小写。
+> 写一个 type 函数，它能检测各种数据类型的值。如果是基本类型，就使用 typeof；引用类型就使用 toString 方法。此外鉴于 typeof 的结果是小写，我也希望所有的结果都是小写。
 
 ```javascript
 /**
@@ -118,6 +124,9 @@ function type(value)
 {
   const protoToString = Object.prototype.toString
   const isReference = typeof value === 'object' || typeof value === 'function'
+
+  // 调用 toString 得到的是 '[object type]' 字符串
+  // type 是数据的真实类型，拿到它并转为小写就是我们需要的
 
   return isReference ? protoToString.call(value).slice(8, -1).toLowerCase() : typeof value
 }
@@ -148,7 +157,8 @@ function isString(value)
 ```javascript
 function isNull(value)
 {
-  return type(value) === 'null'
+  // 可以直接判断是不是 null，而无须使用 type(value) 来判断
+  return value === null
 }
 ```
 
@@ -190,7 +200,9 @@ function isObject(value)
 
 #### isArray
 
-对于数组的检测，ES6定义了Array.isArray API，用来检测数组类型。目前，所有主流浏览器都已经支持该接口。
+对于数组的检测，我更推荐 ES6 的 Array.isArray API，它用来检测数组类型。目前，所有主流浏览器都已经支持该接口。
+
+当然，如果你想兼容老的浏览器，那就使用 Object.prototype.toString 吧。
 
 ```javascript
 function isArray(value)
@@ -219,7 +231,7 @@ function isArguments(value)
 
 #### isArrayLike
 
-类数组(array-like)
+检测 **类数组(array-like)对象**，可以参考下[jQuery](https://github.com/jquery/jquery/blob/683ceb8ff067ac53a7cb464ba1ec3f88e353e3f5/src/core/isArrayLike.js#L4)或者[lodash](https://github.com/lodash/lodash/blob/4.17.15/lodash.js#L11361)的源码
 
 ```javascript
 function isArrayLike(value)
@@ -229,6 +241,8 @@ function isArrayLike(value)
 ```
 
 #### isPlainObject
+
+检测 **对象字面量(纯对象)**
 
 ```javascript
 function isPlainObject(value)
@@ -252,6 +266,8 @@ function isPlainObject(value)
       funcToString.call(Ctor) === funcToString.call(Object)
 }
 ```
+
+好吧，我直接抄的 lodash
 
 做一下验证:
 
