@@ -27,7 +27,7 @@ categories:
 
 8. Object
 
-#### 检测数据类型
+### 检测数据类型
 
 javascript 提供了 typeof 结构用来检测数据的类型。但是对于引用类型，函数则会返回'function'，其他的引用类型和null都会得到'object'。
 
@@ -114,7 +114,7 @@ obj.hasOwnProperty('money') // false
 ```
 
 
-## Function
+## 函数(Function)
 
 **函数是 javascript 的一等公民。**  
 
@@ -151,7 +151,7 @@ IIFE(Immediately Invoked Function Expression)立即调用的函数表达式:
 }())
 ```
 
-#### Arguments 
+### Arguments 
 
 **arguments** 是函数内部特有的一个变量，保存了调用函数时传递的所有参数。  
 
@@ -187,7 +187,7 @@ function sum()
 sum(1, 2， 3, 4) // 10
 ```
 
-#### Scope
+### Scope
 
 在javascript中，用var声明的变量是函数作用域的。是的，不是块级作用域，这一特性非常糟糕，可能不小心就会导致一些问题。
 外部函数的变量对内部函数来说都是可见的；内部函数的变量对外部来说是不可见的。
@@ -227,7 +227,7 @@ function test()
 test()
 ```
 
-#### Closure
+### 闭包(Closure)
 
 让我们来看一个例子，很简单，就是一个计数器:
 ```javascript
@@ -256,7 +256,7 @@ console.log(counter.getValue()) // 2
 像这样，函数可以访问它被创建时所处的上下文环境。这被成为闭包。
 
 
-#### Currying
+### 柯里化(Currying)
 
 [柯里化](https://zh.javascript.info/currying-partials)
 
@@ -309,9 +309,158 @@ sum(1)(2)(3) // 6
 
 ## Inheritance ( extends )
 
-#### 模拟 new 操作符的执行过程
+就以我所了解的PHP(后端编程语言)来说，它是一门面向对象的编程语言(OOP)，是一个类继承另一个类。比如:
 
-## Array
+```php
+class People {
+  public $name;
+  public $age;
+  public $height;
+  public $weight;
 
-## Regex( Regular Expression )
+  public function constructor($name, $age, $height, $weight) {
+    $this->name = $name;
+    $this->age = $age;
+    $this->height = $height;
+    $this->weight = $weight;
+  }
 
+  public function say(){
+    echo "{$this->name} say...";
+  }
+
+  public function eat(){
+    echo "{$this->name} eat...";
+  }
+}
+
+// Children 类也可以定义自己的属性和方法
+class Children extends People {}
+```
+
+我们定义了 People 类，它有 姓名，年纪，身高，体重4个公共成员属性以及说话，吃饭2个公共方法；再定义一个继承People 的 Children 类，这样 Children 类就有了 父类(People) 的所有属性和方法。
+
+```php
+$xiaoming = new Children('xaioming', 5, 100, 30);
+
+echo $xiaoming->name; // 'xiaoming'
+echo $xiaoming->say();// 'xiaoming say...'
+echo $xiaoming->eat();// 'xiaoming eat...'
+```
+
+但是在 JavaScript 中，情况似乎有点不一样，它并不像PHP那样是基于类的继承。
+
+JavaScript 是基于 **原型** 的继承，即对象继承自另一个对象，而且他还不是直接的继承，
+而是引入了一个多余的间接层: **通过构造器函数产生对象**。
+
+### 构造函数
+
+构造函数也是一个函数，为了让它区别于普通函数，按照约定，**构造函数的首字母需要大写**。
+
+当一个函数对象被创建时，Function 构造器产生的函数对象会运行类似这样的一些代码:
+```javascript
+this.prototype = {constructor: this}
+```
+新函数对象会被赋予一个 prototype 属性，它的值是一个包含 constructor 属性且属性值为该新函数的对象。
+这个 prototype 对象是存放继承特征的地方。
+
+我们可以定义一个构造器并扩充它的原型:
+
+```javascript
+function Person(name){
+  this.name = name
+}
+
+Person.prototype.getName = function(){
+  return this.name
+}
+
+Person.prototype.says = function(){
+  return this.saying || ''
+}
+```
+现在我们可以构造一个实例:
+```javascript
+var xiaoming = new Person('xiaoming')
+
+xiaoming.getName();                     // 'xiaoming'
+xiaoming instanceof Person              // true
+// 实例对象的[[prototype]]属性指向 构造函数的原型对象
+xiaoming.__proto__ === Person.prototype // true
+// 构造函数原型对象上的 constructor 属性指向构造函数本身
+Person.prototype.constructor === Person // true
+```
+
+更多的继承相关的细节到时候会专门写一篇JavaScript专题来描述(写好后会放一个超链接)。
+
+### 让 new 运算符像一个方法一样被执行
+
+(这里到时候可以开一个专题)
+
+让我们来模拟 new 运算符的执行过程:
+
+1. 创建一个对象
+2. 将新创建的对象的[[prototype]]特性指向构造函数的原型对象
+3. 调用构造函数，将构造函数中的this指向新创建的对象并传入对应的参数
+4. 如果调用构造函数的返回结果是一个对象，则返回该对象；否则返回新创建的对象
+
+```javascript
+function mockNew(){
+  var constructFunc = arguments[0]
+  var args = Array.prototype.slice.call(arguments, 1)
+
+  var target = Object.create(constructFunc.prototype)
+  var ret = constructFunc.apply(target, args)
+
+  return (typeof ret === 'object' && ret) : target
+}
+
+// 验证:
+
+function Person(name, age){
+  this.name = name
+  this.age = age
+}
+
+var xiaoming = mockNew(Person, 'xiaoming', 21)
+
+console.log(xiaoming)                               // Person {name: "xiaoming", age: 21}
+console.log(xiaoming.__proto === Person.prototype)  // true
+```
+
+## 数组(Array)
+
+数组是一段线性分配的内存，它通过整形计算偏移并访问其中的元素。数组是一种性能出色的数据结构。不幸的是，JavaScript没有像此类数组一样的数据结构。
+
+作为代替，JavaScript 提供了一种拥有类数组(array-like)特性的对象。它把数组的下标转变成字符串，用其作为属性。
+它明显地比一个真正的数组慢，但它使用起来更方便。它的属性的检索和更新的方式与对象一模一样。
+
+### 数组字面量
+
+数组的第一个值将获得属性名为'0', 第二个值将获得属性名'1'，依此类推。
+
+```javascript
+var empty = [];
+var months = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+empty[0];     // undefined
+months[0];    // 'January'
+
+empty.length; // 0
+months.length // 12
+```
+
+对象字面量:
+```javascript
+var monthsObject = {
+  0: 'January', 1: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June',
+  7: 'July', 8: 'August', 9: 'September', 10: 'October', 11: 'November', 12: 'December',
+}
+```
+
+months 和 monthsObject 产生的结果类似。它们都是包含10个属性的对象，并且那些属性刚好有相同的名字和值。
+但是它们也有一些显著的不同，months 继承自 Array.prototype，而 monthsObject 继承自 Object.prototype，
+所以 months 继承了大量有用的方法。同时，months 还有一个 length 属性，而 monthsObject 则没有。
