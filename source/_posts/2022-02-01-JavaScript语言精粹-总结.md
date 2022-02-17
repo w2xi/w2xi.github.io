@@ -9,11 +9,11 @@ categories:
 
 **因为这本书出版的时候ES6还没有问世，所以书中不涉及ES6的知识点**。因此下面的总结不会使用ES6的语法。
 
-## Data Types
+## 数据类型
 
 **共8种数据类型**
 
-**原始类型(基本类型):**
+**基本类型**
 
 1. Number
 2. String
@@ -25,11 +25,13 @@ categories:
 
 **引用类型**
 
-8. Object
+8. Object(对象)
 
 ### 检测数据类型
 
-javascript 提供了 typeof 结构用来检测数据的类型。但是对于引用类型，函数则会返回'function'，其他的引用类型和null都会得到'object'。
+javascript 提供了 typeof 结构用来检测数据的类型。
+
+但是对于引用类型，函数则会返回'function'，其他的引用类型和null都会得到'object'。
 
 ```javascript
 console.log(typeof Math.floor) // 'function' 
@@ -39,8 +41,12 @@ console.log(typeof {})         // 'object'
 ```
 
 可以看出，typeof 有诸多限制，无法区分 null 以及除 function 之外的其他引用类型。  
-既然 typeof 走不通，那就使用 javascript 提供的另一种检测方法，
-**Object.prototype.toString**，它可以检测出所有的数据类型，非常方便
+
+既然 typeof 走不通，那就使用 javascript 提供的另一种检测方法: 
+
+<code>Object.prototype.toString</code>
+
+它可以很好的检测出所有的数据类型
 
 ```javascript
 var protoToString = Object.prototype.toString
@@ -54,8 +60,7 @@ console.log(protoToString.call({}))        // [object Object]
 console.log(protoToString.call(Math.floor)) // [object Function]
 ```
 
-
-## Object
+## 对象(Object)
 
 **Note that: 对象通过引用来传递，他们永远不会被复制**
 
@@ -65,8 +70,8 @@ var obj = {
   name: 'w2xi',
   age: 26,
   'profile-info': {
-    phone: '13027330803',
-    address: 'ChangSha.China',  
+    phone: '12343',
+    address: 'ChangSha.China',
   },
   sayHello: function(){
     console.log('hi')
@@ -156,7 +161,10 @@ IIFE(Immediately Invoked Function Expression)立即调用的函数表达式:
 **arguments** 是函数内部特有的一个变量，保存了调用函数时传递的所有参数。  
 
 **描述**:  
-arguments 是一个**类数组(array-like)**对象，它有一个length属性并且属性从下标0开始，但是它没有数组内置的一些方法，像 forEach(), map()
+
+arguments 是一个 **类数组(array-like)** 对象。
+
+它有一个length属性并且属性从下标0开始，但是它没有数组内置的一些方法，像 forEach(), map()。
 
 将类数组转换为数组:
 ```javascript
@@ -189,7 +197,10 @@ sum(1, 2， 3, 4) // 10
 
 ### Scope
 
-在javascript中，用var声明的变量是函数作用域的。是的，不是块级作用域，这一特性非常糟糕，可能不小心就会导致一些问题。
+在javascript中，用var声明的变量是函数作用域的。
+
+是的，不是块级作用域，这一特性非常糟糕，可能不小心就会导致一些问题。
+
 外部函数的变量对内部函数来说都是可见的；内部函数的变量对外部来说是不可见的。
 
 ```javascript
@@ -213,9 +224,12 @@ function outer(){
 outer()
 ```
 
-**变量提升**  
+### 变量提升
+
 用 var 声明的变量会被提升到该变量所在词法环境(lexical environment)的顶部。  
+
 例子:
+
 ```javascript
 function test()
 {
@@ -277,11 +291,6 @@ var protoSlice = Array.prototype.slice
 
 function f(a, b ,c)
 {
-  // Converts array-like to an array 
-  // var arr = protoSlice.call(arguments)
-
-  // return arr.reduce(function(a, b){ return a + b }, 0)
-
   return a + b + c
 }
 
@@ -462,5 +471,7 @@ var monthsObject = {
 ```
 
 months 和 monthsObject 产生的结果类似。它们都是包含10个属性的对象，并且那些属性刚好有相同的名字和值。
+
 但是它们也有一些显著的不同，months 继承自 Array.prototype，而 monthsObject 继承自 Object.prototype，
+
 所以 months 继承了大量有用的方法。同时，months 还有一个 length 属性，而 monthsObject 则没有。
