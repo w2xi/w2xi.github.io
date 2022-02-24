@@ -95,7 +95,7 @@ function Person(name, age){
 var xiaoming = mockNew(Person, 'xiaoming', 21)
 
 console.log(xiaoming)                               // Person {name: "xiaoming", age: 21}
-console.log(xiaoming.__proto === Person.prototype)  // true
+console.log(xiaoming.__proto__ === Person.prototype)  // true
 ```
 
 ## 参考
