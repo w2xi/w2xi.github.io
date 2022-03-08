@@ -3,6 +3,7 @@ title: JavaScript专题之类型判断
 date: 2022-02-02 15:24:40
 tags:
   - JavaScript专题系列
+  - JavaScript
 categories:
   - FrontEnd
 ---
