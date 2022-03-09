@@ -14,9 +14,9 @@ date: 2022-03-06 10:19:36
 
 ## 前言
 
-一个偶然的机会看到了这篇文章 [if 我是前端团队Leader，怎么制定前端协作规范?](https://cloud.tencent.com/developer/article/1482183)
+偶然间看到了这篇文章 [if 我是前端团队Leader，怎么制定前端协作规范?](https://cloud.tencent.com/developer/article/1482183)
 
-于是便了解到了 git 提交规范，并在工作中实践了 [Angular的提交信息规范](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)，所以在这个周末便写了这篇文章。
+于是便了解到了 git 提交规范，并在工作中实践了 [AngularJS提交信息规范](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)，所以在这个周末便写了这篇文章。
 
 ## 杂乱无章的现状
 
@@ -35,12 +35,14 @@ fix zentao bug
 
 [AngularJS的提交信息规范](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) 在社区中享有盛名。
 
+当然还存在其它的规范。不过本文只介绍 AngularJS提交信息规范。
+
 ### 好处
 
 + 提高可读性
 + 信息分类，重点突出。按关键字筛选，如过滤掉代码样式的提交
 + 快速定位重要的提交，提高效率 🚀
-+ 容易生成CHANGELOG
++ 容易生成CHANGELOG.md
 
 ## 提交信息格式
 
@@ -87,7 +89,7 @@ fix zentao bug
 + refactor: 重构，代码优化，但不包括修复bug以及添加新功能。比如 代码封装，变量重命名，消除魔术数字，提高代码可读性等
 + test: 单元测试相关的变更
 
-> 📌注意: [Angular的提交信息规范](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) 中已经移除了下面这两项 type，但是 commitlint 并没有将其移除，而且我个人觉得在开发还是需要用到的，所以我把它们加上了。
+> :information_source: [AngularJS提交信息规范](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) 中已经移除了下面这两项 type，但是 commitlint 并没有将其移除，而且我个人觉得在开发中还是需要用到的，毕竟适合的才是最好的。
 + chore: 杂项，其他无法归类的变更，比如代码合并
 + style: 代码格式调整，对逻辑无影响。比如为按照 eslint 或 prettier 修改代码格式。注意不是 UI 变更
 
@@ -125,6 +127,9 @@ Closes #234
 Closes #123, #245, #992
 ```
 
+> :information_source: 关闭某个issue并非必须使用 Closes 关键字，其实还有其他的关键字可以使用，除非你要严格地遵守 Angular 提交规范。
+> 参考这篇文章: [通过提交信息来关闭issue](https://segmentfault.com/a/1190000013973453)
+
 ### Revert commits
 
 如果当前提交用于还原先前的提交，它应该以 revert: 开头，后跟还原提交的 <code>header</code>
@@ -134,7 +139,7 @@ Closes #123, #245, #992
 + Body 部分的格式是固定的，必须是: This reverts commit <SHA>，其中的hash是被撤销 commit 的 SHA1 标识符是
 + 明确描述还原提交消息的原因
 
-[比如](https://github.com/vuejs/vue/commit/d5ade28652b07303ac6b713813792752ae5e4e04):
+[比如(来自Vue.js)](https://github.com/vuejs/vue/commit/d5ade28652b07303ac6b713813792752ae5e4e04):
 ```
 revert: feat: expose all scoped slots on this.$slots
 
@@ -146,6 +151,8 @@ This reverts commit 0129b0e.
 现在开发项目基本都是团队合作，所以为了保证大家都能遵循该规范，
 
 可以使用 [commitlint](https://github.com/conventional-changelog/commitlint) + [husky](https://github.com/typicode/husky) 配套工具来规范代码提交。
+
+commitlint 是校验git提交信息的工具，husky 用于在项目中方便地添加 git hooks。
 
 ## commitlint
 
@@ -219,7 +226,7 @@ npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
 }
 ```
 
-> 📌注意: 这样做的目的是，当第一次运行该项目，执行 <code>npm i</code> 时会自动执行 prepare 脚本从而激活 hooks。否则，hooks 没有被激活则无法通过 commitlint 来检验提交信息。
+> :information_source: 这样做的目的是，当第一次运行该项目，执行 <code>npm i</code> 时会自动执行 prepare 脚本从而激活 hooks。否则，hooks 没有被激活则无法通过 commitlint 来检验提交信息。
 
 ### 测试
 
@@ -257,6 +264,10 @@ create mode 100644 .gitignore
 ```bash
 git commit --no-verify -m "your_message"
 ```
+
+## 建议
+
+并非要完全遵守 [AngularJS提交规范](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)。这个规范肯定是最适合 AngularJS 团队的，并不一定完全适合你和你的团队。结合自身或者团队的需求，利用配套的工具，我们完全可以做出合适的选择。
 
 ## 其它工具
 
