@@ -15,28 +15,70 @@ tags:
 
 逃~):running:
 
-## Install mkcert
+## Installation
 
 引用自:
 > 凡是复杂且常见的需求，必有人开发出更简单的工具解放生产力，也必有成熟的解决方案占领市场。
 
 mkcert 的地址：[https://github.com/FiloSottile/mkcert](https://github.com/FiloSottile/mkcert)
 
+因为我的操作系统是Windows，所以按照对应的安装方式来，[For Windows](https://github.com/FiloSottile/mkcert#windows)
 
 
+### mkcert
 
+终端输入:
+```bash
+mkcert -install
+```
 
+输出:
+```bash
+Created a new local CA 💥
+The local CA is now installed in the system trust store! ⚡️
+The local CA is now installed in the Firefox trust store (requires browser restart)! 🦊
+```
 
+终端输入:
+```bash
+# 切换到你的项目根目录
+cd /path/to/your_project_root_path
+# 安装证书
+mkcert w2xi.tech '*.w2xi.tech' w2xi.test localhost 127.0.0.1 ::1
+```
 
+输出:
+```bash
+Created a new certificate valid for the following names 📜
+ - "w2xi.tech"
+ - "*.w2xi.tech"
+ - "w2xi.test"
+ - "localhost"
+ - "127.0.0.1"
+ - "::1"
 
+Reminder: X.509 wildcards only go one level deep, so this won't match a.b.w2xi.tech ℹ️
 
+The certificate is at "./w2xi.tech+5.pem" and the key at "./w2xi.tech+5-key.pem" ✅
 
+It will expire on 19 June 2024 🗓
 
+```
 
+### Configuration
 
+vue.config.js
 
-
-
+```javascript
+module.exports = {
+  //...
+  devServer: {
+    https: true,
+    key: fs.readFileSync('./w2xi.tech+5-key.pem'),
+    cert: fs.readFileSync('./w2xi.tech+5.pem'),
+  }
+}
+```
 
 ## End
 
@@ -46,5 +88,8 @@ mkcert 的地址：[https://github.com/FiloSottile/mkcert](https://github.com/Fi
 
 [https://shanyue.tech/frontend-engineering/local-https.html](https://shanyue.tech/frontend-engineering/local-https.html)
 
+[https://github.com/FiloSottile/mkcert](https://github.com/FiloSottile/mkcert)
 
+[https://juejin.cn/post/6925296374628122632](https://juejin.cn/post/6925296374628122632)
 
+[https://www.cnblogs.com/you-men/p/13955113.html](https://www.cnblogs.com/you-men/p/13955113.html)
