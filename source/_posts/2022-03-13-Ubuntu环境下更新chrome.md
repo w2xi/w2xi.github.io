@@ -58,3 +58,7 @@ dpkg -i ./google-chrome-stable_current_amd64.deb
 ```javascript
 ƒ structuredClone() { [native code] }
 ```
+
+## 参考
+
+[How to update Chrome in Ubuntu 20.04](https://askubuntu.com/questions/1275967/how-to-update-chrome-in-ubuntu-20-04)
