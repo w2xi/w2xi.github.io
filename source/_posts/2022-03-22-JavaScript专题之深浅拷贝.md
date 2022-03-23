@@ -174,10 +174,30 @@ console.log(arr.say === newArr.say)         // true
 
 > 我们还不确定“复制”一个函数意味着什么。有些人会通过 <code>toString()</code> 来序列化一个函数的源代码(但是结果取决与JavaScript的具体实现，而且不同的引擎对于不同类型的函数处理方式不完全相同)...(P109)
 
+## structuredClone()
+
+在新的浏览器上已经可以使用内置的API <code>structuredClone()</code> 深拷贝JavaScript值了，
+
+浏览器开始提供原生能力了，这是个令人振奋的消息。
+
+浏览器兼容:
+
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
+:---: | :---: | :---: | :---: | :---: | 
+ 98 ✔ |  94 ✔ |  98 ✔ | 15.4 ✔ | 84 ✔ |
+
+
+是的，这个 API 只能在新的浏览器中使用，如果你要应用在实际项目中，则需要做一些兼容性处理。
+
+对于这个 <code>structuredClone</code> 解决了什么问题，有什么不足，我这里就不赘述了，可以参考下面的链接。
+
 ## 参考
 
 [https://github.com/mqyqingfeng/Blog/issues/33](https://github.com/mqyqingfeng/Blog/issues/33)
 
+[https://web.dev/structured-clone/](https://web.dev/structured-clone/)
+
+[https://developer.mozilla.org/en-US/docs/Web/API/structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
 
 
 
