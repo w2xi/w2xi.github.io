@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="w2xi">
+    
+    <title>
+        
+            JavaScript专题之类型判断 |
+        
+        W2xi&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpeg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"w2xi.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/avatar.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Stay hungry. Stay foolish."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                W2xi&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">JavaScript专题之类型判断</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">w2xi</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-02-02 15:24:40</span>
+        <span class="mobile">2022-02-02 15:24</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/FrontEnd/">FrontEnd</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/JavaScript/">JavaScript</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/JavaScript%E4%B8%93%E9%A2%98%E7%B3%BB%E5%88%97/">JavaScript专题系列</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="前言-3">前言</h2>
+<p>类型判断，在我们平时的工作中会经常使用到。比如，判断给定值是否是数字，字符串，布尔值和数组等类型。</p>
+<h2 id="typeof">typeof</h2>
+<p>typeof 应该是我们最常用地用于判断数据类型的一种方式了。</p>
+<p>Example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">1</span>    <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span> <span class="comment">// &#x27;boolean&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>typeof 介绍:</p>
+<blockquote>
+<p>typeof 操作符返回一个字符串，表示未经计算的操作数的类型。</p>
+</blockquote>
+<p>最新的 ECMAScript 标准定义了8种<a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_Types#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%B1%BB%E5%9E%8B" >数据类型<i class="fas fa-external-link-alt"></i></a>:</p>
+<ul>
+<li>7种基本数据类型
+<ul>
+<li>Number</li>
+<li>String</li>
+<li>Boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>Symbol</li>
+<li>BigInt</li>
+</ul>
+</li>
+<li>引用类型</li>
+</ul>
+<p>对这8种数据类型分别使用 typeof:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">1</span>            <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">&#x27;a&#x27;</span>          <span class="comment">// &#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>         <span class="comment">// &#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>         <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>    <span class="comment">// &#x27;undefined&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>(<span class="string">&#x27;s&#x27;</span>)  <span class="comment">// &#x27;symbol&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">BigInt</span>(<span class="number">2</span>)    <span class="comment">// &#x27;bigint&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> [<span class="number">1</span>]          <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，得到的结果与它们的类型并非完全一一对应。</p>
+<p>null 返回了 ‘object’，而非我们期望的 ‘null’；[1] 返回了 ‘object’，而非 ‘array’。</p>
+<p>在 javascript 中，可以说一切皆对象。数组是对象，函数是对象，对象是对象，哈哈，但是 typeof 却可以检测出函数的类型:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; <span class="comment">// &#x27;function&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>现在我们知道了，typeof 可以检测出: Number, String, Boolean, undefined, Symbol, BigInt, Function 类型。<br>
+但是，对于 Array, Object, Arguments 等对象似乎无能为力。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> []                             <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125;                             <span class="comment">// &#x27;object&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="built_in">arguments</span>&#125;   <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>难道我们真的没有办法检测出它们的真实类型吗？</p>
+<p>我想我们还是有办法的。</p>
+<h2 id="Object-prototype-toString">Object.prototype.toString</h2>
+<p><strong>toString()方法返回一个表示该对象的字符串，格式: ‘[object type]’，type 表示对象的类型</strong></p>
+<p><strong>来自MDN:</strong></p>
+<blockquote>
+<p>为了每个对象都能通过 Object.prototype.toString() 的检测，需要以 Function.prototype.call() 或者 Function.prototype.apply() 的形式来调用，传递要检查的对象作为第一个参数，称为 thisArg。</p>
+</blockquote>
+<p>看个例子:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> protoToString = <span class="built_in">Object</span>.prototype.toString</span><br><span class="line"></span><br><span class="line">protoToString.call(<span class="number">1</span>)                   <span class="comment">// &#x27;[object Number]&#x27;</span></span><br><span class="line">protoToString.call(<span class="string">&#x27;a&#x27;</span>)                 <span class="comment">// &#x27;[object String]&#x27;</span></span><br><span class="line">protoToString.call(<span class="literal">true</span>)                <span class="comment">// &#x27;[object Boolean]&#x27;</span></span><br><span class="line">protoToString.call(<span class="literal">null</span>)                <span class="comment">// &#x27;[object Null]&#x27;</span></span><br><span class="line">protoToString.call(<span class="literal">undefined</span>)           <span class="comment">// &#x27;[object Undefined]&#x27;</span></span><br><span class="line">protoToString.call(<span class="built_in">Symbol</span>(<span class="string">&#x27;s&#x27;</span>))         <span class="comment">// &#x27;[object Symbol]&#x27;</span></span><br><span class="line">protoToString.call(<span class="built_in">BigInt</span>(<span class="number">2</span>))           <span class="comment">// &#x27;[object BigInt]&#x27;</span></span><br><span class="line">protoToString.call([])                  <span class="comment">// &#x27;[object Array]&#x27;</span></span><br><span class="line">protoToString.call(&#123;&#125;)                  <span class="comment">// &#x27;[Object Object]&#x27;</span></span><br><span class="line">protoToString.call(<span class="keyword">new</span> <span class="built_in">Error</span>)           <span class="comment">// &#x27;[object Error]&#x27;</span></span><br><span class="line">protoToString.call(<span class="built_in">Math</span>)                <span class="comment">// &#x27;[object Math]&#x27;</span></span><br><span class="line">protoToString.call(<span class="keyword">new</span> <span class="built_in">Date</span>)            <span class="comment">// &#x27;[object Date]&#x27;</span></span><br><span class="line">protoToString.call(<span class="regexp">/abc/</span>)               <span class="comment">// &#x27;[object RegExp]&#x27;</span></span><br><span class="line">protoToString.call(<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">()=&gt;</span>&#123;&#125;)) <span class="comment">// &#x27;[object Promise]&#x27;</span></span><br><span class="line">protoToString.call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)        <span class="comment">// &#x27;[object Fuction]&#x27;</span></span><br><span class="line">protoToString.call(<span class="function"><span class="keyword">function</span>*(<span class="params"></span>)</span>&#123;&#125;)       <span class="comment">// &#x27;[object GeneratorFunction]&#x27;</span></span><br><span class="line">protoToString.call(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)  <span class="comment">// &#x27;[object AsyncFunction]&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Object.prototype.toString 方法可以检测出多少种类型呢？ '几乎’所有的类型。这里用几乎是因为我发现，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protoToString.call(<span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;,<span class="function">()=&gt;</span>&#123;&#125;))<span class="comment">// &#x27;[object Object]&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>和预期的 ‘[object Proxy]’ 不一致，以后找到原因了再更新。</p>
+<h2 id="type-API">type API</h2>
+<p>既然通过 Object.prototype.toString 可以检测出几乎所有的类型，那么我们可以将其封装成一个函数: 将要检测的值传递到该函数，经过判断返回值的数据类型。</p>
+<p>我的设想：</p>
+<blockquote>
+<p>写一个 type 函数，它能检测各种数据类型的值。如果是基本类型，就使用 typeof；引用类型就使用 toString 方法。此外鉴于 typeof 的结果是小写，我也希望所有的结果都是小写。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取要检测的数据类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>value The Value to check</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123;string&#125;</span> </span>Returns the type of data</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">const</span> protoToString = <span class="built_in">Object</span>.prototype.toString</span><br><span class="line">  <span class="keyword">const</span> isReference = <span class="keyword">typeof</span> value === <span class="string">&#x27;object&#x27;</span> || <span class="keyword">typeof</span> value === <span class="string">&#x27;function&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用 toString 得到的是 &#x27;[object type]&#x27; 字符串</span></span><br><span class="line">  <span class="comment">// type 是数据的真实类型，拿到它并转为小写就是我们需要的</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> isReference ? protoToString.call(value).slice(<span class="number">8</span>, -<span class="number">1</span>).toLowerCase() : <span class="keyword">typeof</span> value</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="封装常用的-API">封装常用的 API</h2>
+<h3 id="isNumber">isNumber</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNumber</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> type(value) === <span class="string">&#x27;number&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isString">isString</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isString</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> type(value) === <span class="string">&#x27;string&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isNull">isNull</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNull</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 可以直接判断是不是 null，而无须使用 type(value) 来判断</span></span><br><span class="line">  <span class="keyword">return</span> value === <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isUndefined">isUndefined</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isUndefined</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> type(value) === <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isBoolean">isBoolean</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBoolean</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> type(value) === <span class="string">&#x27;boolean&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isSymbol">isSymbol</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSymbol</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> type(value) === <span class="string">&#x27;symbol&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isObject">isObject</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value !== <span class="literal">null</span> &amp;&amp; type(value) === <span class="string">&#x27;object&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="isArray">isArray</h4>
+<p>对于数组的检测，我更推荐 ES6 的 Array.isArray API，它用来检测数组类型。目前，所有主流浏览器都已经支持该接口。</p>
+<p>当然，如果你想兼容老的浏览器，那就使用 Object.prototype.toString 吧。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="isFunction">isFunction</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isFunction</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> type(value) === <span class="string">&#x27;function&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="isArguments">isArguments</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArguments</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> type(value) === <span class="string">&#x27;arguments&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="isArrayLike">isArrayLike</h4>
+<p>检测 <strong>类数组(array-like)对象</strong>，可以参考下<a class="link"   target="_blank" rel="noopener" href="https://github.com/jquery/jquery/blob/683ceb8ff067ac53a7cb464ba1ec3f88e353e3f5/src/core/isArrayLike.js#L4" >jQuery<i class="fas fa-external-link-alt"></i></a>或者<a class="link"   target="_blank" rel="noopener" href="https://github.com/lodash/lodash/blob/4.17.15/lodash.js#L11361" >lodash<i class="fas fa-external-link-alt"></i></a>的源码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayLike</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> isObject(value) &amp;&amp; !isFunction(value) &amp;&amp; isNumber(value.length)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="isPlainObject">isPlainObject</h4>
+<p>检测 <strong>对象字面量(纯对象)</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPlainObject</span>(<span class="params">value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">const</span> hasOwnProperty = <span class="built_in">Object</span>.prototype.hasOwnProperty</span><br><span class="line">  <span class="keyword">const</span> funcToString = <span class="built_in">Function</span>.prototype.toString</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( !isObject(value) )&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> proto = <span class="built_in">Object</span>.getPrototypeOf(value)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( proto === <span class="literal">null</span> )&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> Ctor = hasOwnProperty.call(proto, <span class="string">&#x27;constructor&#x27;</span>) &amp;&amp; proto.constructor</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> Ctor === <span class="string">&#x27;function&#x27;</span> &amp;&amp; Ctor <span class="keyword">instanceof</span> Ctor &amp;&amp; </span><br><span class="line">      funcToString.call(Ctor) === funcToString.call(<span class="built_in">Object</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好吧，我直接抄的 lodash</p>
+<p>做一下验证:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">isPlainObject([])               <span class="comment">// false</span></span><br><span class="line">isPlainObject(<span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;) <span class="comment">// false</span></span><br><span class="line">isPlainObject(&#123;&#125;)               <span class="comment">// true</span></span><br><span class="line">isPlainObject(<span class="built_in">Object</span>.prototype) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：JavaScript专题之类型判断</li>
+        <li>Post author：w2xi</li>
+        <li>Create time：2022-02-02 15:24:40</li>
+        <li>
+            Post link：https://w2xi.github.io/2022/02/02/JavaScript专题之类型判断/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/JavaScript/">#JavaScript</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/JavaScript%E4%B8%93%E9%A2%98%E7%B3%BB%E5%88%97/">#JavaScript专题系列</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/02/17/%E4%BD%BF%E7%94%A8Mock.js%E6%A8%A1%E6%8B%9F%E6%8E%A5%E5%8F%A3%E6%95%B0%E6%8D%AE/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">使用Mock.js模拟接口数据</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/02/01/JavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9-%E6%80%BB%E7%BB%93/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JavaScript语言精粹-总结</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">w2xi</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80-3"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typeof"><span class="nav-number">2.</span> <span class="nav-text">typeof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-prototype-toString"><span class="nav-number">3.</span> <span class="nav-text">Object.prototype.toString</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#type-API"><span class="nav-number">4.</span> <span class="nav-text">type API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84-API"><span class="nav-number">5.</span> <span class="nav-text">封装常用的 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#isNumber"><span class="nav-number">5.1.</span> <span class="nav-text">isNumber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isString"><span class="nav-number">5.2.</span> <span class="nav-text">isString</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isNull"><span class="nav-number">5.3.</span> <span class="nav-text">isNull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isUndefined"><span class="nav-number">5.4.</span> <span class="nav-text">isUndefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isBoolean"><span class="nav-number">5.5.</span> <span class="nav-text">isBoolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isSymbol"><span class="nav-number">5.6.</span> <span class="nav-text">isSymbol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isObject"><span class="nav-number">5.7.</span> <span class="nav-text">isObject</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#isArray"><span class="nav-number">5.7.1.</span> <span class="nav-text">isArray</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isFunction"><span class="nav-number">5.7.2.</span> <span class="nav-text">isFunction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isArguments"><span class="nav-number">5.7.3.</span> <span class="nav-text">isArguments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isArrayLike"><span class="nav-number">5.7.4.</span> <span class="nav-text">isArrayLike</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isPlainObject"><span class="nav-number">5.7.5.</span> <span class="nav-text">isPlainObject</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

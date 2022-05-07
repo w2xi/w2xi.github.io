@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="w2xi">
+    
+    <title>
+        
+            [已解决] 如何修复 Kernel Panic - Not Syncing: VFS: Unable to Mount Root FS on Unknown-Block(0,0) |
+        
+        W2xi&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/avatar.jpeg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"w2xi.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.jpeg","favicon":"/images/avatar.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Stay hungry. Stay foolish."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                W2xi&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">[已解决] 如何修复 Kernel Panic - Not Syncing: VFS: Unable to Mount Root FS on Unknown-Block(0,0)</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">w2xi</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-03-09 19:45:11</span>
+        <span class="mobile">2022-03-09 19:45</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>某天早上来到公司打开电脑，结果发现并没有进入那个我熟悉的界面，而是出现了大段的错误信息，那个时候我是非常郁闷且崩溃的😭，今天的心情似乎都不怎么好了。</p>
+<p>虽然是第一次碰到这种问题，但是我面不改色，毫不慌张，因为我以前被 Ubuntu 折腾过好几次了😂，可以说是‘免疫’了😃。</p>
+<p>当然，如果问题解决不了，最坏的结果也就是重装系统而以。</p>
+<p>开干。</p>
+<h2 id="Error-Message">Error Message</h2>
+<p><img src="kernel-panic-error.jpg" alt="Kernel-Panic"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Kernel Panic - Not Syncing: VFS: Unable to Mount Root FS on Unknown-Block(0,0)</span><br></pre></td></tr></table></figure>
+<h2 id="Solution">Solution</h2>
+<h3 id="第一步-选择旧的内核进入系统">第一步: 选择旧的内核进入系统</h3>
+<p>重启你的电脑，然后在引导界面，选择 <strong>Advanced options for Ubuntu</strong> 菜单，你将看到一些可选的内核项，在这里我的是<br>
+<strong>5.13.0-30-generic</strong>(也就是出问题的内核版本)，所以我们需要选择一个以前的内核版本，经过尝试发现 <strong>5.11.0-27-generic</strong> 也可以成功进入的。</p>
+<h3 id="第二步-找到根分区的文件系统">第二步: 找到根分区的文件系统</h3>
+<p>通过使用老版本的内核成功进入系统后，打开终端，输入: <code>sudo fdisk -l</code>，可以看到磁盘分区的信息:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设备            起点       末尾       扇区   大小 类型</span><br><span class="line">/dev/sda1       2048     780287     778240   380M EFI 系统</span><br><span class="line">/dev/sda2     780288  391405567  390625280 186.3G Linux 文件系统</span><br><span class="line">/dev/sda3  391405568  453906431   62500864  29.8G Linux swap</span><br><span class="line">/dev/sda4  453906432 3907028991 3453122560   1.6T Linux 文件系统</span><br></pre></td></tr></table></figure>
+<p>其实我们的目的是要找到 <strong>根分区</strong>(<code>/</code>) 的文件系统，从上面的信息中并不能直观地得到答案，输入 <code>df -l</code>，输出如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">文件系统            1K-块     已用       可用 已用% 挂载点</span><br><span class="line">...</span><br><span class="line">/dev/sda2       191197068 19273824  162141228   11% /</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>于是我们知道根分区的文件系统是 <strong>/dev/sda2</strong>。</p>
+<h3 id="第三步-找到出问题的内核版本">第三步: 找到出问题的内核版本</h3>
+<p>如果你不知道在你电脑没有出问题的时候的内核版本是多少，在终端输入: <code>dpkg --list | grep linux-image</code>, 输出如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ic  linux-image-5.11.0-25-generic              5.11.0-25.27~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-27-generic              5.11.0-27.29~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-34-generic              5.11.0-34.36~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-36-generic              5.11.0-36.40~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-37-generic              5.11.0-37.41~20.04.2                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-38-generic              5.11.0-38.42~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-40-generic              5.11.0-40.44~20.04.2                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-41-generic              5.11.0-41.45~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.11.0-43-generic              5.11.0-43.47~20.04.2                  amd64        Signed kernel image generic</span><br><span class="line">ic  linux-image-5.11.0-44-generic              5.11.0-44.48~20.04.2                  amd64        Signed kernel image generic</span><br><span class="line">ii  linux-image-5.11.0-46-generic              5.11.0-46.51~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.13.0-25-generic              5.13.0-25.26~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.13.0-27-generic              5.13.0-27.29~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">iF  linux-image-5.13.0-28-generic              5.13.0-28.31~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">iF  linux-image-5.13.0-30-generic              5.13.0-30.33~20.04.1                  amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.8.0-43-generic               5.8.0-43.49~20.04.1                   amd64        Signed kernel image generic</span><br><span class="line">rc  linux-image-5.8.0-63-generic               5.8.0-63.71~20.04.1                   amd64        Signed kernel image generic</span><br><span class="line">ii  linux-image-generic-hwe-20.04              5.13.0.30.33~20.04.17                 amd64        Generic Linux kernel image</span><br></pre></td></tr></table></figure>
+<p>那个最新的就是我们需要的。在这里，我的是 <strong>5.13.0-30-generic</strong>。</p>
+<h3 id="最后-2">最后</h3>
+<p>通过上面的几个步骤，我们知道了:</p>
+<ul>
+<li>根分区(/)的文件系统是 <strong>/dev/sda2</strong></li>
+<li>我们原先的内核版本是 <strong>5.13.0-30-generic</strong> (出问题的内核版本)</li>
+</ul>
+<p>在终端输入以下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo mount /dev/sda2 /mnt</span><br><span class="line">sudo mount --bind /dev /mnt/dev</span><br><span class="line">sudo mount --bind /dev/pts /mnt/dev/pts</span><br><span class="line">sudo mount --bind /proc /mnt/proc</span><br><span class="line">sudo mount --bind /sys /mnt/sys</span><br><span class="line">sudo chroot /mnt</span><br></pre></td></tr></table></figure>
+<p>然后更新 initramfs</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-initramfs -u -k 5.13.0-30-generic</span><br></pre></td></tr></table></figure>
+<p>ℹ️ <strong>5.13.0-30-generic</strong> 是出问题的内核版本，用你的内核版本替换它。</p>
+<p>最后，更新 grub</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-grub</span><br></pre></td></tr></table></figure>
+<p>更新成功后，重启你的电脑，你应该可以正常的进入你的系统了。</p>
+<p>大功告成！</p>
+<h2 id="Reference">Reference</h2>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.geekswarrior.com/2019/07/solved-how-to-fix-kernel-panic-on-linux.html" >[SOLVED] How to Fix Kernel Panic - Not Syncing: VFS: Unable to Mount Root FS on Unknown-Block(0,0)<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：[已解决] 如何修复 Kernel Panic - Not Syncing: VFS: Unable to Mount Root FS on Unknown-Block(0,0)</li>
+        <li>Post author：w2xi</li>
+        <li>Create time：2022-03-09 19:45:11</li>
+        <li>
+            Post link：https://w2xi.github.io/2022/03/09/已解决-如何修复-Kernel-Panic-Not-Syncing-VFS-Unable-to-Mount-Root-FS-on/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Linux/">#Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/03/11/VSCode%E9%85%8D%E7%BD%AEGit-Bash/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">VSCode配置Git Bash</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/03/06/commitlint-husky-%E8%A7%84%E8%8C%83git%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">commitlint + husky 规范git提交信息</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">w2xi</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-Message"><span class="nav-number">1.</span> <span class="nav-text">Error Message</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E9%80%89%E6%8B%A9%E6%97%A7%E7%9A%84%E5%86%85%E6%A0%B8%E8%BF%9B%E5%85%A5%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.1.</span> <span class="nav-text">第一步: 选择旧的内核进入系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E6%89%BE%E5%88%B0%E6%A0%B9%E5%88%86%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.2.</span> <span class="nav-text">第二步: 找到根分区的文件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E6%89%BE%E5%88%B0%E5%87%BA%E9%97%AE%E9%A2%98%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC"><span class="nav-number">2.3.</span> <span class="nav-text">第三步: 找到出问题的内核版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%90%8E-2"><span class="nav-number">2.4.</span> <span class="nav-text">最后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
