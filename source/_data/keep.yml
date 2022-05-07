@@ -39,7 +39,7 @@ style:
   first_screen:
     enable: true
     background_img: /images/bg.svg # You can use local image or image external link
-    description: Keep writing and Keep loving.
+    description: Stay hungry. Stay foolish.
 
   # Scroll style settings
   scroll:
